@@ -1,0 +1,9 @@
+/etc/inc/priv/wallmon.priv.inc
+
+pkg/wallmon.xml
+pkg/wallmon.inc
+%%DATADIR%%/info.xml
+/usr/local/bin/wallmon
+
+@dir /etc/inc/priv
+@dir /etc/inc

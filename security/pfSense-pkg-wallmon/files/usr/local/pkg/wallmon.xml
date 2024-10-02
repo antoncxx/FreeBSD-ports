@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE packagegui SYSTEM "../schema.packages.dtd">
+<?xml-stylesheet type="text/xsl" href="../xsl/package.xsl"?>
+<packagegui>
+    <copyright>
+    <![CDATA[
+    /*
+    * To be written.
+    */
+    ]]>
+    </copyright>
+    <name>wallmon</name>
+    <version>%%PKGVERSION%%</version>
+    <title>Services: wallmon</title>
+    <include_file>/usr/local/pkg/wallmon.inc</include_file>
+    <menu>
+        <name>wallmon</name>
+        <section>Services</section>
+        <configfile>wallmon.xml</configfile>
+        <url>/pkg_edit.php?xml=wallmon.xml</url>
+    </menu>
+    <service>
+        <name>wallmon</name>
+        <rcfile>wallmon.sh</rcfile>
+        <executable>wallmon</executable>
+        <description>Configuration monitoring daemon</description>
+    </service>
+    <fields>
+        <field>
+            <fieldname>enable</fieldname>
+            <fielddescr>Enable</fielddescr>
+            <description>Enable wallmon service.</description>
+            <type>checkbox</type>
+        </field>
+        <field>
+            <fielddescr>Server URL</fielddescr>
+            <fieldname>serveraddr</fieldname>
+            <description>The URL of the wallmon server.</description>
+            <type>input</type>
+            <required />
+        </field>
+        <field>
+            <fieldname>hb_interval</fieldname>
+            <fielddescr>Heartbeat interval in seconds</fielddescr>
+            <description>Seconds. Default: 60 if not specified</description>
+            <type>input</type>
+        </field>
+        <field>
+            <fieldname>interface</fieldname>
+            <fielddescr>Interface Selection</fielddescr>
+            <description>Select the interface for server communication.</description>
+            <type>interfaces_selection</type>
+        </field>
+    </fields>
+    <custom_php_install_command>
+        wallmon_install();
+    </custom_php_install_command>
+    <custom_php_deinstall_command>
+        wallmon_deinstall();
+    </custom_php_deinstall_command>
+    <custom_php_resync_config_command>
+        wallmon_save();
+    </custom_php_resync_config_command>
+    <custom_php_validation_command>
+        wallmon_validate_input($_POST, $input_errors);
+    </custom_php_validation_command>
+</packagegui>

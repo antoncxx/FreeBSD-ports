@@ -1,0 +1,9 @@
+<pfsensepkgs>
+    <package>
+        <name>wallmon</name>
+        <website>https://github.com/NullNet-ai/wallmon</website>
+        <descr><![CDATA[Configuration monitoring tool.]]></descr>
+        <version>%%PKGVERSION%%</version>
+        <configurationfile>wallmon.xml</configurationfile>
+    </package>
+</pfsensepkgs>
