@@ -1,13 +1,13 @@
 PORTNAME=          pfSense-pkg-wallmon
 PORTVERSION=       0.1.0
-PORTVERSIONPREFIX= v
+PORTREVISION=      1
 CATEGORIES=        security
-
 MASTER_SITES=      https://github.com/NullNet-ai/wallmon/archive/ref/tags/
-DISTFILES=         ${PORTVERSIONPREFIX}${PORTVERSION}.tar.gz
+DISTFILES=         v${PORTVERSION}.tar.gz
 
 MAINTAINER=        anton.liashkevich.eng@gmail.com
-COMMENT=           Configuration monitoring tool for pfSense.
+COMMENT=           pfSense package wallmon
+WWW=               https://todo.com
 
 LICENSE=           BSD2CLAUSE
 
@@ -33,5 +33,6 @@ do-install:
 		${STAGEDIR}${PREFIX}/pkg/wallmon.xml
 
 	${INSTALL_PROGRAM} ${WRKSRC}/wallmon ${STAGEDIR}${PREFIX}/bin/
-	
+
 .include <bsd.port.mk>
+

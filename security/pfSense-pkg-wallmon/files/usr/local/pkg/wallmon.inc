@@ -8,8 +8,6 @@ require_once('system.inc');
 
 function wallmon_install() {
     safe_mkdir("/var/lock");
-    # TODO:
-    # unlink_if_exists("/usr/local/etc/rc.d/wallmon");
 }
 
 function wallmon_deinstall() {
@@ -20,8 +18,8 @@ function wallmon_deinstall() {
         }
     }
 
-    #TODO: Delete all wallmon artifacts if they exist
     unlink_if_exists("/var/lock/wallmon.lock");
+    unlink_if_exists("/usr/local/etc/rc.d/wallmon.sh");
 }
 
 function wallmon_save() {
@@ -33,7 +31,7 @@ function wallmon_save() {
         $wallmon_config[$k] = addslashes($v);
     }
 
-    if ($wallmon_config['enable'] != "on") {
+    if ($wallmon_config["enable"] != "on") {
         if (is_service_running("wallmon")) {
             stop_service("wallmon");
         }
@@ -42,14 +40,26 @@ function wallmon_save() {
         return;
     }
 
-    if (empty($wallmon_config['hd_interval'])) {
-        $wallmon_config['hd_interval'] = 60;
+    if (empty($wallmon_config["hd_interval"])) {
+        $wallmon_config["hd_interval"] = 60;
     }
+
+        
+    $iface = config_get_path("interfaces/{$wallmon_config['interface']}/if");
+    $s_url = $wallmon_config["serveraddr"];
+    $hb_tm = $wallmon_config["hd_interval"];
+    $suuid = $wallmon_config["uuid"];
+
+    $arguments = "-u {$s_url} -i {$iface} -t {$hb_tm}";
+    if (!empty($suuid)) {
+        $arguments .= " -s {$suuid}";
+    }
+
 
     $pidfile = "{$g['varrun_path']}/wallmon.pid";
     write_rcfile(array(
         "file" => "wallmon.sh",
-        "start" => "/usr/sbin/daemon -cP {$pidfile} /usr/local/bin/wallmon {$wallmon_config['serveraddr']}",
+        "start" => "/usr/sbin/daemon -cP {$pidfile} /usr/local/bin/wallmon {$arguments}",
         "stop" => "/bin/kill `/bin/cat {$pidfile}`"
     ));
 
@@ -71,6 +81,11 @@ function wallmon_validate_input($post, &$input_errors) {
         $post['hb_interval'] <= 0)) {
         
         $input_errors[] = gettext("Invalid heartbeat interval value");
+    }
+
+    $reg = "/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i";
+    if (!empty($post["uuid"]) && (preg_match($reg, $post["uuid"]) !== 1)) {
+        $input_errors[] = gettext("Invalid UUID");
     }
 }
 

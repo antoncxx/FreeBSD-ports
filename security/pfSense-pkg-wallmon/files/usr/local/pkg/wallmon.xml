@@ -41,7 +41,7 @@
         </field>
         <field>
             <fieldname>hb_interval</fieldname>
-            <fielddescr>Heartbeat interval in seconds</fielddescr>
+            <fielddescr>Heartbeat interval</fielddescr>
             <description>Seconds. Default: 60 if not specified</description>
             <type>input</type>
         </field>
@@ -50,6 +50,12 @@
             <fielddescr>Interface Selection</fielddescr>
             <description>Select the interface for server communication.</description>
             <type>interfaces_selection</type>
+        </field>
+        <field>
+            <fieldname>uuid</fieldname>
+            <fielddescr>System UUID</fielddescr>
+            <description>System UUID: Leave blank to automatically obtain if from your system.</description>
+            <type>input</type>
         </field>
     </fields>
     <custom_php_install_command>

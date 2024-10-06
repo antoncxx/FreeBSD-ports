@@ -2,7 +2,7 @@
     <package>
         <name>wallmon</name>
         <website>https://github.com/NullNet-ai/wallmon</website>
-        <descr><![CDATA[Configuration monitoring tool.]]></descr>
+        <descr><![CDATA[WallMon - Centralized Firewall Configuration and Monitoring.]]></descr>
         <version>%%PKGVERSION%%</version>
         <configurationfile>wallmon.xml</configurationfile>
     </package>
