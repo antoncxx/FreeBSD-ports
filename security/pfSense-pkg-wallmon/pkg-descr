@@ -1,4 +1,7 @@
-WallMon is a centralized system designed to monitor and manage firewall
-congurations across multiple networks. It reduces the risks assosiated with
-misconfigurations by consolidating control into a central interface.
+Wallmon is a powerful pfSense monitoring and management tool designed to
+provide centralized oversight of multiple pfSense systems. It enables
+administrators to monitor network health, analyze traffic patterns, and
+receive real-time alerts, making it easy to optimize and secure pfSense
+deployments from a single interface.
 
+LICENSE: MIT
