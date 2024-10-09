@@ -9,7 +9,7 @@ MAINTAINER=        wallmon.ops@nulltet.ai
 COMMENT=           pfSense package wallmon
 WWW=               https://todo.com
 
-LICENSE=           BSD2CLAUSE
+LICENSE=           MIT
 
 USES=              gmake
 ALL_TARGET=        release
