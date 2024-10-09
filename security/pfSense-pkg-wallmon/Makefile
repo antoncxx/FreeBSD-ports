@@ -5,7 +5,7 @@ CATEGORIES=        security
 MASTER_SITES=      https://github.com/NullNet-ai/wallmon/archive/ref/tags/
 DISTFILES=         v${PORTVERSION}.tar.gz
 
-MAINTAINER=        anton.liashkevich.eng@gmail.com
+MAINTAINER=        wallmon.ops@nulltet.ai
 COMMENT=           pfSense package wallmon
 WWW=               https://todo.com
 
