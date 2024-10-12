@@ -45,7 +45,7 @@ function wallmon_save() {
     }
 
         
-    $iface = config_get_path("interfaces/{$wallmon_config['interface']}/if");
+    $iface = get_real_interface($wallmon["interface"]);
     $s_url = $wallmon_config["serveraddr"];
     $hb_tm = $wallmon_config["hd_interval"];
     $suuid = $wallmon_config["uuid"];
